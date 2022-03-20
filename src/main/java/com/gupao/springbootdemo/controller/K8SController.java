@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 @RestController
 public class K8SController {
@@ -13,7 +14,9 @@ public class K8SController {
     public String type;
 
     @RequestMapping("/k8s")
-    public String k8s() {
-        return "hello K8s <br/>111222 " + type;
+    public String k8s() throws UnknownHostException {
+        String name = InetAddress.getLocalHost().getHostName().toString();
+
+        return "hello K8s" + type + "----" + name;
     }
 }
