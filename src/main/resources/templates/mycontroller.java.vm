@@ -1,0 +1,74 @@
+package ${package.Controller};
+
+import ${package.Entity}.${entity};
+import ${package.Service}.${table.serviceName};
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import java.util.List;
+
+/**
+ * $!{table.comment} 前端控制器
+ * @author ${author}
+ * @since ${date}
+ */
+@RestController
+@RequestMapping("/${table.entityPath}" )
+public class ${table.controllerName} {
+
+    @Autowired
+    private ${table.serviceName}  ${table.entityPath}Service;
+
+    /**
+    * 保存
+    *
+    * @param model
+    * @return
+    */
+    @RequestMapping("/save")
+    public Object save(@RequestBody ${entity} model) {
+        ${table.entityPath}Service.save(model);
+        return "success";
+    }
+
+    /**
+    * 修改
+    *
+    * @param model
+    * @return
+    */
+    @PostMapping(value = "/update")
+    public ResponseEntity update(@RequestBody ${entity} model) {
+        ${table.entityPath}Service.updateById(model);
+        return ResponseEntity.ok().build();
+    }
+
+    /**
+    * 查询详情
+    *
+    * @param id
+    * @return
+    */
+    @RequestMapping("/getById")
+    public Object getById(Integer id) {
+        ${entity} model = ${table.entityPath}Service.getById(id);
+        // todo 再包装一层
+        return model;
+    }
+
+    /**
+    * 删除
+    *
+    * @param id
+    * @return
+    */
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity delete(@PathVariable String id) {
+        ${table.entityPath}Service.removeById(id);
+        return ResponseEntity.ok().build();
+    }
+
+
+
+
+}
