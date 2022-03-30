@@ -23,7 +23,7 @@ import ${superControllerClassPackage};
 #end
 
 /**
- * $!{table.comment} 前端控制器
+ * $!{table.comment} ${table.controllerName}
  *
  * @Author ${author}
  * @Version 1.0

@@ -12,6 +12,16 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
  ****/
 public class MyBatisPlusCode {
 
+
+    // 数据库参数
+    final static String db_url = "192.168.3.23:3306/shop_goods";
+    final static String db_Username = "root";
+    final static String db_Password = "111111";
+
+    // 需要生成的表
+    final static String[] include = new String[]{"category_brand", ""};
+
+
     public static void main(String[] args) {
         // 代码生成器
         AutoGenerator mpg = new AutoGenerator();
@@ -22,6 +32,7 @@ public class MyBatisPlusCode {
         gc.setOutputDir(projectPath + "/src/main/java")
                 .setAuthor("huliang")
                 .setOpen(false)  //是否打开
+                .setActiveRecord(false)
                 .setIdType(IdType.AUTO)
                 .setBaseResultMap(true)// XML ResultMap
                 .setBaseColumnList(true)// XML columList
@@ -37,10 +48,10 @@ public class MyBatisPlusCode {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://192.168.3.23:3306/shop_goods?useUnicode=true&useSSL=false&characterEncoding=utf8")
+        dsc.setUrl("jdbc:mysql://" + db_url + "?useUnicode=true&useSSL=false&characterEncoding=utf8")
                 .setDriverName("com.mysql.cj.jdbc.Driver")
-                .setUsername("root")
-                .setPassword("111111")
+                .setUsername(db_Username)
+                .setPassword(db_Password)
                 .setDbType(DbType.MYSQL)
         ;
         mpg.setDataSource(dsc);
@@ -73,13 +84,15 @@ public class MyBatisPlusCode {
         StrategyConfig strategy = new StrategyConfig();
         // strategy.setCapitalMode(true);// 全局大写命名 ORACLE 注意
 //        strategy.setTablePrefix(new String[] { "tb_", "tsys_" });// 此处可以修改为您的表前缀
-        strategy.setInclude(new String[]{"category_brand"})// 需要生成的表
+        strategy.setInclude(include)// 需要生成的表
                 // 写于父类中的公共字段
                 .setSuperEntityColumns("id")
 //        .setTablePrefix(pc.getModuleName() + "_");
-                //生成 @RestController 控制器
-                .setRestControllerStyle(true)
-                .setControllerMappingHyphenStyle(true)
+                .setSuperEntityClass("") // 实体父类
+
+                .setRestControllerStyle(true)                 //生成 @RestController 控制器
+                .setControllerMappingHyphenStyle(true)  // url 驼峰
+
                 .setEntityColumnConstant(false)
                 .setEntityTableFieldAnnotationEnable(true) //字段上生成注解
                 //数据库表映射到实体的命名策略
