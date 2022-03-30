@@ -61,14 +61,13 @@ public class MyBatisPlusCode {
 
         TemplateConfig template = new TemplateConfig();
         template.setController("templates/controller.java.vm")
-//                .setService("templates/service.vm")
-//                .setServiceImpl("templates/serviceImpl.vm")
+                .setService("templates/service.java.vm")
+                .setServiceImpl("templates/serviceImpl.java.vm")
 //                .setMapper("templates/mapper.vm")
 //                .setXml("templates/xml.vm")
 //                .setEntity("templates/entity.vm")
         ;
         mpg.setTemplate(template);//或者注解掉使用默认模板
-
 
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
@@ -77,13 +76,11 @@ public class MyBatisPlusCode {
         strategy.setInclude(new String[]{"category_brand"})// 需要生成的表
                 // 写于父类中的公共字段
                 .setSuperEntityColumns("id")
-
-//        strategy.setTablePrefix(pc.getModuleName() + "_");
-
+//        .setTablePrefix(pc.getModuleName() + "_");
                 //生成 @RestController 控制器
                 .setRestControllerStyle(true)
                 .setControllerMappingHyphenStyle(true)
-
+                .setEntityColumnConstant(false)
                 .setEntityTableFieldAnnotationEnable(true) //字段上生成注解
                 //数据库表映射到实体的命名策略
                 .setNaming(NamingStrategy.underline_to_camel)

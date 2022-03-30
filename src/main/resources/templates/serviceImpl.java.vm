@@ -1,0 +1,47 @@
+package ${package.ServiceImpl};
+
+import ${package.Entity}.${entity};
+import ${package.Mapper}.${table.mapperName};
+import ${package.Service}.${table.serviceName};
+import ${superServiceImplClassPackage};
+import org.springframework.stereotype.Service;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+
+import java.util.List;
+
+/**
+ *
+ * $!{table.comment} 服务实现类
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Service
+public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
+    ## mapper name
+    #set($MapperName=${table.mapperName})
+    #set($lowerCaseMapperName=$MapperName.substring(1))
+    #set($lowerCaseMapperName=$MapperName.substring(0,1).toLowerCase()+$lowerCaseMapperName)
+    ## entity name
+    #set($entityName=${entity})
+    #set($lowerCaseEntityName=$entityName.substring(1))
+    #set($lowerCaseEntityName=$entityName.substring(0,1).toLowerCase()+$lowerCaseEntityName)
+
+    @Autowired
+    private ${table.mapperName} ${lowerCaseMapperName};
+
+    @Override
+    public List<${entity}> queryList(${entity} ${lowerCaseEntityName}) {
+        QueryWrapper<${entity}> queryWrapper = new QueryWrapper<${entity}>();
+        return this.${lowerCaseMapperName}.selectList(queryWrapper);
+    }
+
+    @Override
+    public Page<${entity}> queryPageList( ${entity} ${lowerCaseEntityName}, Long currentPage, Long size) {
+        QueryWrapper< ${entity}> wrapper = new QueryWrapper(${lowerCaseEntityName});
+        return this.${lowerCaseMapperName}.selectPage(new Page<>(currentPage, size), wrapper);
+    }
+
+}
