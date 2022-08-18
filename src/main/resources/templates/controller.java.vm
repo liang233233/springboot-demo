@@ -126,7 +126,7 @@ public class ${table.controllerName} {
         return RespResult.ok(brands);
     }
 
-    /****
+    /**
      * 条件查询+分页
      * @param ${lowerCaseEntityName}
      * @return RespResult
