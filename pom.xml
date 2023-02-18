@@ -16,6 +16,8 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <!-- 打包 跳过 test 方法 -->
+        <skipTests>true</skipTests>
     </properties>
 
     <dependencies>
@@ -36,6 +38,13 @@
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>3.3.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/p6spy/p6spy   sql 打印日志信息,执行时间 -->
+        <dependency>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
+            <version>3.9.1</version>
         </dependency>
 
         <!--MySQL-->
@@ -61,6 +70,26 @@
         </dependency>
 
 
+        <!-- https://mvnrepository.com/artifact/com.alibaba/easyexcel  excel 导入导出工具-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>3.1.1</version>
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <artifactId>poi-ooxml-schemas</artifactId>-->
+<!--                    <groupId>org.apache.poi</groupId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+        </dependency>
+
+        <dependency>
+            <groupId>net.anumbrella.seaweedfs</groupId>
+            <artifactId>seaweedfs-java-client</artifactId>
+            <version>0.0.2.RELEASE</version>
+        </dependency>
+
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -73,6 +102,7 @@
             </exclusions>
         </dependency>
     </dependencies>
+
 
     <build>
         <plugins>

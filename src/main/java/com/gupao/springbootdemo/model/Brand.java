@@ -1,11 +1,13 @@
 package com.gupao.springbootdemo.model;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 /*****
  * @Author: 波波
@@ -21,6 +23,7 @@ public class Brand {
     @TableId(type = IdType.AUTO)
     private Integer id;
     // 品牌名字
+    @JsonSerialize(using= ToStringSerializer.class)
     private String name;
     // 品牌图片
     private String image;
@@ -28,4 +31,18 @@ public class Brand {
     private String initial;
     // 排序
     private Integer sort;
+
+
+    @Version
+    private Integer version;
+
+    @TableLogic
+    private Integer deleted;
+
+    @TableField(fill = FieldFill.INSERT)
+    private LocalDateTime createTime;
+
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private LocalDateTime updateTime;
+
 }

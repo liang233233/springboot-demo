@@ -8,7 +8,6 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 @SpringBootApplication
-@MapperScan(basePackages = {"com.gupao.springbootdemo.mapper"})
 public class SpringbootDemoApplication {
 
     public static void main(String[] args){

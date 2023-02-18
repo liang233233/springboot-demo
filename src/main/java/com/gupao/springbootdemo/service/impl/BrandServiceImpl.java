@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.gupao.springbootdemo.mapper.BrandMapper;
 import com.gupao.springbootdemo.model.Brand;
 import com.gupao.springbootdemo.service.BrandService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,10 +32,10 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements
         //条件包装对象
         QueryWrapper<Brand> queryWrapper = new QueryWrapper<Brand>();
         //根据name查询品牌
-        queryWrapper.like("name",brand.getName());
+        queryWrapper.like("name", brand.getName());
 
         //根据initial查询
-        queryWrapper.eq("initial",brand.getInitial());
+        queryWrapper.eq("initial", brand.getInitial());
         return brandMapper.selectList(queryWrapper);
     }
 
@@ -45,9 +46,9 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements
     @Override
     public Page<Brand> queryPageList(Brand brand, Long currentPage, Long size) {
         //条件包装对象
-        QueryWrapper<Brand> queryWrapper = new QueryWrapper<Brand>();
+        QueryWrapper<Brand> queryWrapper = new QueryWrapper();
         //根据name查询品牌
-        queryWrapper.like("name",brand.getName());
-        return brandMapper.selectPage(new Page<Brand>(currentPage,size),queryWrapper);
+        queryWrapper.like(StringUtils.isNotBlank(brand.getName()), "name", brand.getName());
+        return brandMapper.selectPage(new Page<Brand>(currentPage, size), queryWrapper);
     }
 }

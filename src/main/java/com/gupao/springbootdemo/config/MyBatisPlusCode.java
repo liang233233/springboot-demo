@@ -14,12 +14,18 @@ public class MyBatisPlusCode {
 
 
     // 数据库参数
-    final static String db_url = "192.168.3.23:3306/shop_goods";
+//    final static String db_url = "10.128.173.151:3306/isohotel_city";
+//    final static String db_Username = "cloudwalk";
+//    final static String db_Password = "1qaz!QAZ";
+
+
+    final static String db_url = "10.10.1.78:3306/shop_goods";
+//    final static String db_url = "10.10.1.78:3306/smart_community_application";
     final static String db_Username = "root";
-    final static String db_Password = "111111";
+    final static String db_Password = "1qaz!QAZ";
 
     // 需要生成的表
-    final static String[] include = new String[]{"category_brand", ""};
+    final static String[] include = new String[]{"upload_file"};
 
 
     public static void main(String[] args) {
@@ -58,8 +64,8 @@ public class MyBatisPlusCode {
 
         //4. 包名策略配置
         PackageConfig pkConfig = new PackageConfig();
-        pkConfig.setParent("com.gupao.springbootdemo") //父包名，路径为 com.ilyuc.material.controller
-                .setModuleName("code") // 单独文件夹
+        pkConfig.setParent("cn.cloudwalk") //父包名，路径为 com.ilyuc.material.controller
+                .setModuleName("community") // 单独文件夹
                 .setController("controller") //controller包名
                 .setService("service") //servcie包名
                 .setServiceImpl("service.impl") //servcie包名
@@ -86,7 +92,7 @@ public class MyBatisPlusCode {
 //        strategy.setTablePrefix(new String[] { "tb_", "tsys_" });// 此处可以修改为您的表前缀
         strategy.setInclude(include)// 需要生成的表
                 // 写于父类中的公共字段
-                .setSuperEntityColumns("id")
+//                .setSuperEntityColumns("id")
 //        .setTablePrefix(pc.getModuleName() + "_");
                 .setSuperEntityClass("") // 实体父类
 
