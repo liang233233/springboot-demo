@@ -5,7 +5,6 @@ import com.gupao.springbootdemo.model.UploadFile;
 import com.gupao.springbootdemo.service.BrandService;
 import com.gupao.springbootdemo.service.UploadFileService;
 import com.gupao.springbootdemo.util.FileUtil;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 import lombok.SneakyThrows;
 import net.anumbrella.seaweedfs.core.FileTemplate;
 import net.anumbrella.seaweedfs.core.file.FileHandleStatus;
@@ -13,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.io.File;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -97,7 +95,7 @@ class SpringbootDemoApplicationTests {
     public static void main(String[] args) throws InterruptedException {
         Thread thread = new Thread();
         ThreadLocal<Object> objectThreadLocal = new ThreadLocal<>();
-        objectThreadLocal.set();
+//        objectThreadLocal.set();
         thread.join();
 
     }

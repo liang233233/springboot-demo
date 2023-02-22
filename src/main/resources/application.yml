@@ -68,6 +68,7 @@ rest:
 
 seaweedfs:
   qz:
+    enable: false
     host: 10.10.1.78
     port: 19333
     fullpath: http://10.10.1.78:19333/
